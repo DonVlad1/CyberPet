@@ -1,4 +1,4 @@
-class Animal
+export class Animal
 {   constructor(name, hunger, thirst, tiredness, happiness)
     {
         this.name = name
@@ -33,4 +33,14 @@ class Animal
         this.thirst -= 30
         this.tiredness -= 30
     }
+
 }
+
+
+export const testTank = new Animal("MyTank", 20, 20, 20, 20)
+
+
+// export function test()
+// {
+//     console.log("test gud")
+// }
