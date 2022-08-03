@@ -62,6 +62,9 @@ console.log(`${petName}'s stats are:
 Hunger: ${petStats.hunger} | Tired: ${petStats.tired} | Happy: ${petStats.happy} | Clean: ${petStats.clean}`)
 
 
+
+
+
 async function playGame()
 {
     const playMenu = await inquirer.prompt([

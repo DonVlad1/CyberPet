@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 
 
-import { Animal, testTank } from './modules/animalClass.js';
+import { Animal, Tank } from './modules/animalClass.js';
 
 
 
@@ -38,10 +38,10 @@ let petAbilities = {
 
 // pet stats
 let petStats = {
-    hunger: testTank.hunger, 
-    tired: testTank.thirst, 
-    happy: testTank.tiredness, 
-    clean: testTank.happiness
+    hunger: Tank.hunger, 
+    tired: Tank.thirst, 
+    happy: Tank.tiredness, 
+    clean: Tank.happiness
 }
 
 // calling inquiries
@@ -58,17 +58,16 @@ console.log(`Your chosen pet is ${petType}. Their name is ${petName}.`);
 console.log(`${petName}'s special ability is: ${petAbility}.`);
 
 // added stats (console.log and object)
-console.log(`${petName}'s stats are:
-Hunger: ${petStats.hunger} | Tired: ${petStats.tired} | Happy: ${petStats.happy} | Clean: ${petStats.clean}`)
+console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tired} | Happy: ${petStats.happy} | Clean: ${petStats.clean}`)
 
 
 
 // this function is what will be looping to play the game, I've currenly made it to loop around, we'll need If statements per action to alter stats.
-// also need to figure out how to make the game stop when you exist game
 async function playGame()
 {
     const playMenu = await inquirer.prompt([
         {
+            
             type: 'list',
             name: 'petActions',
             message: 'What would you like to do?',
@@ -83,9 +82,10 @@ async function playGame()
     }
     else
     {
-        
+        console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tired} | Happy: ${petStats.happy} | Clean: ${petStats.clean}`)
     }
     playGame()
+    
 
 }
 
