@@ -62,9 +62,6 @@ console.log(`${petName}'s stats are:
 Hunger: ${petStats.hunger} | Tired: ${petStats.tired} | Happy: ${petStats.happy} | Clean: ${petStats.clean}`)
 
 
-
-// this function is what will be looping to play the game, I've currenly made it to loop around, we'll need If statements per action to alter stats.
-// also need to figure out how to make the game stop when you exist game
 async function playGame()
 {
     const playMenu = await inquirer.prompt([
@@ -89,22 +86,12 @@ async function playGame()
 
 }
 
-function stopGame()
+stopGame()
 {
     console.log("Game has stopped")
 }
 
 playGame()
-
-
-
-
-
-
-
-
-
-
 
 // if (petResponse.getPet == "tank") {
 //     // console.log(testTank)
