@@ -12,6 +12,7 @@ export class Animal
     {
         this.hunger += 60
         this.thirst -= 20
+        return this
     }
 
     sleep()
@@ -19,11 +20,13 @@ export class Animal
         this.tiredness += 80
         this.hunger -= 40
         this.thirst -= 40
+        return this
     }
 
     drink()
     {
         this.thirst += 60
+        return this
     }
 
     play()
@@ -32,6 +35,7 @@ export class Animal
         this.hunger -= 30
         this.thirst -= 30
         this.tiredness -= 30
+        return this
     }
 
 }
