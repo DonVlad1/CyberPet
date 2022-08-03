@@ -39,9 +39,9 @@ let petAbilities = {
 // pet stats
 let petStats = {
     hunger: Tank.hunger, 
-    tired: Tank.thirst, 
-    happy: Tank.tiredness, 
-    clean: Tank.happiness
+    tiredness: Tank.tiredness, 
+    happiness: Tank.happiness, 
+    clean: Tank.clean
 }
 
 // calling inquiries
@@ -75,6 +75,10 @@ async function playGame()
         }
 
     ])
+    if (playMenu.petActions === 'Feed') 
+    {
+        petStats = Tank.eat()
+    }
     if (playMenu.petActions === 'Exit Game') 
     {
         stopGame()
