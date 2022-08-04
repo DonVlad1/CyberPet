@@ -45,6 +45,10 @@ export class Animal
         return this
     }
 
+    specialAbility() {
+        
+    }
+
 }
 
 
