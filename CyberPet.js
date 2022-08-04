@@ -38,15 +38,6 @@ let petAbilities = {
     mimic: "shapeshift"
 }
 
-// pet stats
-// need to find a way to select pet stats depending on pet type
-let petStats = {
-    hunger: Tank.hunger, 
-    tiredness: Tank.tiredness, 
-    happiness: Tank.happiness, 
-    thirst: Tank.thirst
-}
-
 // calling inquiries
 const petResponse = await inquirer.prompt(getPetType);
 const nameResponse = await inquirer.prompt(getPetName);
@@ -54,6 +45,27 @@ const nameResponse = await inquirer.prompt(getPetName);
 // setting inputs to variables
 let petName = nameResponse.getName;
 let petType = petResponse.getPet; 
+
+// pet stats
+let petStats = ""; 
+// Setting petStats = stats of chosen pet
+function setPetType() {
+    if (petType == "tank") {
+        petStats = Tank; 
+    } else if (petType == "cat") {
+        // not functional
+        petStats = catStats; 
+    } else if (petType == "dog") {
+        // not functional
+        petStats = dogStats; 
+    } else if (petType == "dragon") {
+        // not functional
+        petStats = dragonStats; 
+    } else if (petType == "mimic") {
+        // not functional
+        petStats = mimicStats; 
+    }
+}
 
 let petAbility = petAbilities[petType]; 
 
