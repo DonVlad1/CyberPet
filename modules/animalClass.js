@@ -46,18 +46,19 @@ export class Animal
     }
 
     specialAbility() {
-        
+
     }
 
 }
 
 
-export const statTank = new Animal("myTank", 10, 30, 50, 60)
-export const statMimic = new Animal("myMimic", 20, 150, 60, 20)
+export const statTank = new Animal("myTank", 110, 130, 150, 160)
+export const statMimic = new Animal("myMimic", 120, 150, 160, 120)
 export const statDragon = new Animal("myDragon", 233, 72, 81, 96)
-export const statCat = new Animal("myCat", 68, 24, 124, 34)
-export const statDog = new Animal("myDog", 43, 24, 83, 92)
+export const statCat = new Animal("myCat", 68, 124, 124, 34)
+export const statDog = new Animal("myDog", 143, 124, 83, 92)
 
+export const petList = [statTank, statMimic, statDragon, statCat, statDog]
 
 // export function test()
 // {

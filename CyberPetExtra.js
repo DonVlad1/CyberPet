@@ -124,30 +124,40 @@ async function playGame() {
     // end game if stat reaches 0
     function checkGameOver() {
         //console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tiredness} | Happy: ${petStats.happiness} | Thirst: ${petStats.thirst}`);
-        if (petStats.hunger <= 0) 
+        // if (petStats.hunger <= 0) 
+        // {
+        //     console.log(`${petName} got too hungry, and has eaten you!`)
+        //     console.log(`Game Over`)
+        //     endGame = true;
+        // } 
+        // else if (petStats.tiredness <= 0) 
+        // {
+        //     console.log(`${petName} got too tired, and has ????`)
+        //     console.log(`Game Over`)
+        //     endGame = true;
+        // } 
+        // else if (petStats.happiness <= 0) 
+        // {
+        //     console.log(`${petName} got too sad, and has ????`)
+        //     console.log(`Game Over`)
+        //     endGame = true;
+        // } 
+        // else if (petStats.thirst <= 0) 
+        // {
+        //     console.log(`${petName} got too thirsty, and has ????`)
+        //     console.log(`Game Over`)
+        //     endGame = true;
+        // }
+
+        for (let petListIndex = 0; petListIndex < Object.keys(petStats).length; petListIndex++) 
         {
-            console.log(`${petName} got too hungry, and has eaten you!`)
-            console.log(`Game Over`)
-            endGame = true;
-        } 
-        else if (petStats.tiredness <= 0) 
-        {
-            console.log(`${petName} got too tired, and has ????`)
-            console.log(`Game Over`)
-            endGame = true;
-        } 
-        else if (petStats.happiness <= 0) 
-        {
-            console.log(`${petName} got too sad, and has ????`)
-            console.log(`Game Over`)
-            endGame = true;
-        } 
-        else if (petStats.thirst <= 0) 
-        {
-            console.log(`${petName} got too thirsty, and has ????`)
-            console.log(`Game Over`)
-            endGame = true;
+            if (Object.values(petStats)[petListIndex] <= 0) {
+                console.log(`${petName} got too ${Object.keys(petStats)[petListIndex]}, and has eaten you!`)
+                petListIndex = Object.keys(petStats).length
+                endGame = true
+            }
         }
+        
     };
 
     function checkPlayerInput() 
