@@ -1,5 +1,5 @@
 export class Animal
-{   constructor(name, hunger, thirst, tiredness, happiness)
+{   constructor(name, hunger, tiredness, happiness, thirst)
     {
         this.name = name
         this.hunger = hunger
@@ -48,11 +48,11 @@ export class Animal
 }
 
 
-export const statTank = new Animal("MyTank", 20, 20, 20, 20)
-export const statMimic = new Animal("MyTank", 20, 20, 20, 20)
-export const statDragon = new Animal("MyTank", 20, 20, 20, 20)
-export const statCat = new Animal("MyTank", 20, 20, 20, 20)
-export const statDog = new Animal("MyTank", 20, 20, 20, 20)
+export const statTank = new Animal("myTank", 10, 30, 50, 60)
+export const statMimic = new Animal("myMimic", 20, 150, 60, 20)
+export const statDragon = new Animal("myDragon", 233, 72, 81, 96)
+export const statCat = new Animal("myCat", 68, 24, 124, 34)
+export const statDog = new Animal("myDog", 43, 24, 83, 92)
 
 
 // export function test()
