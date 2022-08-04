@@ -42,6 +42,7 @@ export class Animal
     {
         this.happiness += 100
         this.tiredness -= 50
+        return this
     }
 
 }
