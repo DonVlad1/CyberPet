@@ -48,9 +48,11 @@ export class Animal
 }
 
 
-export const Tank = new Animal("MyTank", 20, 20, 20, 20)
-export const Mimic = new Animal("MyTank", 20, 20, 20, 20)
-export const Dragon = new Animal("MyTank", 20, 20, 20, 20)
+export const statTank = new Animal("MyTank", 20, 20, 20, 20)
+export const statMimic = new Animal("MyTank", 20, 20, 20, 20)
+export const statDragon = new Animal("MyTank", 20, 20, 20, 20)
+export const statCat = new Animal("MyTank", 20, 20, 20, 20)
+export const statDog = new Animal("MyTank", 20, 20, 20, 20)
 
 
 // export function test()

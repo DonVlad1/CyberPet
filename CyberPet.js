@@ -1,33 +1,45 @@
 import inquirer from 'inquirer';
 
 
-import { Animal, Tank } from './modules/animalClass.js';
+import { Animal, statTank, statCat, statDog, statDragon, statMimic } from './modules/animalClass.js';
 
 
 // inquirer for getting pet name
-const getPetName = [
-    {
-        type: 'input',
-        name: 'getName',
-        message: "Name your pet:"
-    }
-]
+async function petTypeInput()
+{
+    const getPetType = [
+        {
+            type: 'list',
+            name: 'getPet',
+            message: "Select a Pet:",
+            choices: [
+                "cat",
+                "dog",
+                "tank",
+                "dragon",
+                "mimic",
+            ]
+        }
+    ]
 
-// inquirer for getting pet type
-const getPetType = [
-    {
-        type: 'list',
-        name: 'getPet',
-        message: "Select a Pet:",
-        choices: [
-            "cat",
-            "dog",
-            "tank",
-            "dragon",
-            "mimic",
-        ]
-    }
-]
+    const petResponse = await inquirer.prompt(getPetType);
+    return petResponse.getPet
+}
+
+async function petNameInput()
+{
+    const getPetName = [
+        {
+            type: 'input',
+            name: 'getName',
+            message: "Name your pet:"
+        }
+    ]
+
+    const nameResponse = await inquirer.prompt(getPetName);
+    return nameResponse.getName
+
+}
 
 // object: unique pet abilities
 let petAbilities = {
@@ -38,41 +50,39 @@ let petAbilities = {
     mimic: "shapeshift"
 }
 
-// calling inquiries
-const petResponse = await inquirer.prompt(getPetType);
-const nameResponse = await inquirer.prompt(getPetName);
-
 // setting inputs to variables
-let petName = nameResponse.getName;
-let petType = petResponse.getPet; 
-
-// pet stats
-let petStats = ""; 
+let petName = await petNameInput();
+let petType = await petTypeInput(); 
+let petStats = ""
 // Setting petStats = stats of chosen pet
 function setPetType() {
     if (petType == "tank") {
-        petStats = Tank; 
+        petStats = statTank; 
+        return
     } else if (petType == "cat") {
-        // not functional
-        petStats = catStats; 
+        petStats = statCat;
+        return
     } else if (petType == "dog") {
-        // not functional
-        petStats = dogStats; 
+        petStats = statDog;
+        return
     } else if (petType == "dragon") {
-        // not functional
-        petStats = dragonStats; 
+        petStats = statDragon;
+        return
     } else if (petType == "mimic") {
-        // not functional
-        petStats = mimicStats; 
+        petStats = statMimic;
+        return
     }
+    console.log(petStats)
 }
+// set pet stats
+petStats = [setPetType()]
 
 let petAbility = petAbilities[petType]; 
 
 console.log(`Your chosen pet is ${petType}. Their name is ${petName}.`);
 console.log(`${petName}'s special ability is: ${petAbility}.`);
 
-// added stats (console.log and object)
+// // added stats (console.log and object)
 console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tiredness} | Happy: ${petStats.happiness} | Thirst: ${petStats.thirst}`)
 
 
@@ -94,27 +104,27 @@ async function playGame()
 
     if (playMenu.petActions === 'Feed') 
     {
-        petStats = Tank.eat()
+        petStats = statTank.eat()
     }
 
     if (playMenu.petActions === 'Sleep') 
     {
-        petStats = Tank.sleep()
+        petStats = statTank.sleep()
     }
 
     if (playMenu.petActions === 'Play') 
     {
-        petStats = Tank.play()
+        petStats = statTank.play()
     }
 
     if (playMenu.petActions === 'Drink') 
     {
-        petStats = Tank.drink()
+        petStats = statTank.drink()
     }
 
     if (playMenu.petActions === petAbility) 
     {
-        petStats = Tank.runThemDown()
+        petStats = statTank.runThemDown()
     }
 
     if (playMenu.petActions === 'Exit Game') 
