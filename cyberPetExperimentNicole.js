@@ -4,9 +4,8 @@ import inquirer from 'inquirer';
 import { Animal, statTank, statCat, statDog, statDragon, statMimic } from './modules/animalClass.js';
 
 
-// inquirer for selecting what type of pet you have
-async function petTypeInput()
-{
+// inquirer for getting pet name
+async function petTypeInput() {
     const getPetType = [
         {
             type: 'list',
@@ -26,9 +25,7 @@ async function petTypeInput()
     return petResponse.getPet
 }
 
-//inquirer for getting the pet name
-async function petNameInput()
-{
+async function petNameInput() {
     const getPetName = [
         {
             type: 'input',
@@ -44,10 +41,10 @@ async function petNameInput()
 
 // object: unique pet abilities
 let petAbilities = {
-    cat: "boss", 
-    dog: "fetch", 
-    tank: "Run Them Down", 
-    dragon: "breatheIce", 
+    cat: "boss",
+    dog: "fetch",
+    tank: "RunThemDown",
+    dragon: "breatheIce",
     mimic: "shapeshift"
 }
 
@@ -55,13 +52,13 @@ let petAbilities = {
 let petName = await petNameInput();
 let petType = await petTypeInput();
 let petStats = ""
-let petAbility = petAbilities[petType]; 
-let endGame = false; 
+let petAbility = petAbilities[petType];
+let endGame = false;
 
 // Setting petStats = stats of chosen pet
 function setPetType() {
     if (petType == "tank") {
-        petStats = statTank; 
+        petStats = statTank;
         return
     } else if (petType == "cat") {
         petStats = statCat;
@@ -85,14 +82,15 @@ function setPetType() {
 setPetType()
 console.log(`Your chosen pet is ${petType}. Their name is ${petName}.`);
 console.log(`${petName}'s special ability is: ${petAbility}.`);
-console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tiredness} | Happy: ${petStats.happiness} | Thirst: ${petStats.thirst}`);
+console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tiredness} | Happy: ${petStats.happiness} | Thirst: ${petStats.thirst}`)
 
+
+// defining Exit Game function before calling it
 
 // this function is what will be looping to play the game, I've currenly made it to loop around, we'll need If statements per action to alter stats.
 async function playGame() {
-    endGame = false; 
-    
-    // interactable menu for players
+    endGame = false;
+
     const playMenu = await inquirer.prompt([
         {
             type: 'list',
@@ -101,102 +99,73 @@ async function playGame() {
             choices: ['Feed', 'Sleep', 'Play', 'Drink', petAbility, 'Exit Game']
         }
 
-    ]);
+    ])
 
-    // warning messages for when a stat reaches 20 or lower
-    function checkLowStats() {
-        if (petStats.hunger <= 20) 
-        {
-            console.log(`${petName} is hungry!`);
-        } 
-        else if (petStats.tiredness <= 20) 
-        {
-            console.log(`${petName} is tired!`);
-        } 
-        else if (petStats.happiness <= 20) 
-        {
-            console.log(`${petName} is sad!`);
-        } 
-        else if (petStats.thirst <= 20) 
-        {
-            console.log(`${petName} is thirsty!`);
-        }
-    }; 
+    if (petStats.hunger < 20) {
+        console.log(`${petName} is hungry!`);
+    } else if (petStats.tiredness < 20) {
+        console.log(`${petName} is tired!`);
+    } else if (petStats.happiness < 20) {
+        console.log(`${petName} is sad!`);
+    } else if (petStats.thirst < 20) {
+        console.log(`${petName} is thirsty!`);
+    }
 
-    // end game if stat reaches 0
-    function checkGameOver() {
-        //console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tiredness} | Happy: ${petStats.happiness} | Thirst: ${petStats.thirst}`);
-        if (petStats.hunger <= 0) 
-        {
-            console.log(`${petName} got too hungry, and has eaten you!`)
-            console.log(`Game Over`)
-            endGame = true;
-        } 
-        else if (petStats.tiredness <= 0) 
-        {
-            console.log(`${petName} got too tired, and has ????`)
-            console.log(`Game Over`)
-            endGame = true;
-        } 
-        else if (petStats.happiness <= 0) 
-        {
-            console.log(`${petName} got too sad, and has ????`)
-            console.log(`Game Over`)
-            endGame = true;
-        } 
-        else if (petStats.thirst <= 0) 
-        {
-            console.log(`${petName} got too thirsty, and has ????`)
-            console.log(`Game Over`)
-            endGame = true;
-        }
-    };
+    if (petStats.hunger == 0) {
+        console.log(`${petName} got too hungry, and has eaten you!`)
+        console.log(`Game Over`)
+        endGame = true;
+    } else if (petStats.tiredness == 0) {
+        console.log(`${petName} got too tired, and has ????`)
+        console.log(`Game Over`)
+        endGame = true;
+    } else if (petStats.happiness == 0) {
+        console.log(`${petName} got too sad, and has ????`)
+        console.log(`Game Over`)
+        endGame = true;
+    } else if (petStats.thirst == 0) {
+        console.log(`${petName} got too thirsty, and has ????`)
+        console.log(`Game Over`)
+        endGame = true;
+    }
 
-    function checkPlayerInput() 
-    {
-        switch (playMenu.petActions) 
-        {
+    function checkPlayerInput() {
+        switch (playMenu.petActions) {
             case "Feed":
                 petStats = petStats.eat()
                 break;
-    
+
             case "Sleep":
                 petStats = petStats.sleep();
                 break;
-    
+
             case "Play":
                 petStats = petStats.play();
                 break;
-    
+
             case "Drink":
                 petStats = petStats.drink();
                 break;
-    
+
             case petAbility:
                 petStats = statTank.runThemDown()
                 break;
-    
+
             case "Exit Game":
                 endGame = true;
                 break;
         }
-    }  
+    }
 
-    // run function to check player input
     checkPlayerInput();
-    checkLowStats(); 
-    checkGameOver(); 
-    if (endGame == true) 
-    {
-        console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tiredness} | Happy: ${petStats.happiness} | Thirst: ${petStats.thirst}`);
+
+    console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tiredness} | Happy: ${petStats.happiness} | Thirst: ${petStats.thirst}`)
+    if (endGame == true) {
         console.log("Thanks for playing!")
-    } 
-    else 
-    {
-        console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tiredness} | Happy: ${petStats.happiness} | Thirst: ${petStats.thirst}`);
+    } else {
         playGame();
     }
 
-};
+}
 
 playGame()

@@ -46,37 +46,43 @@ let petAbilities = {
     cat: "boss", 
     dog: "fetch", 
     tank: "RunThemDown", 
-    dragon: "???", 
+    dragon: "breatheIce", 
     mimic: "shapeshift"
 }
 
 // setting inputs to variables
 let petName = await petNameInput();
 let petType = await petTypeInput(); 
-
-// pet stats
-let petStats = ""; 
+let petStats = ""
 // Setting petStats = stats of chosen pet
 function setPetType() {
     if (petType == "tank") {
         petStats = statTank; 
+        return
     } else if (petType == "cat") {
         petStats = statCat;
+        return
     } else if (petType == "dog") {
         petStats = statDog;
+        return
     } else if (petType == "dragon") {
-        petStats = statDragon; 
+        petStats = statDragon;
+        return
     } else if (petType == "mimic") {
-        petStats = statMimic; 
+        petStats = statMimic;
+        return
     }
+    console.log(petStats)
 }
+// set pet stats
+petStats = [setPetType()]
 
 let petAbility = petAbilities[petType]; 
 
 console.log(`Your chosen pet is ${petType}. Their name is ${petName}.`);
 console.log(`${petName}'s special ability is: ${petAbility}.`);
 
-// added stats (console.log and object)
+// // added stats (console.log and object)
 console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tiredness} | Happy: ${petStats.happiness} | Thirst: ${petStats.thirst}`)
 
 
@@ -87,7 +93,6 @@ async function playGame()
 {
     const playMenu = await inquirer.prompt([
         {
-            
             type: 'list',
             name: 'petActions',
             message: 'What would you like to do?',
