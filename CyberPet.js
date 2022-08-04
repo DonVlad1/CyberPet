@@ -31,7 +31,7 @@ const getPetType = [
 let petAbilities = {
     cat: "boss", 
     dog: "fetch", 
-    tank: "???", 
+    tank: "RunThemDown", 
     dragon: "???", 
     mimic: "shapeshift"
 }
@@ -41,7 +41,7 @@ let petStats = {
     hunger: Tank.hunger, 
     tiredness: Tank.tiredness, 
     happiness: Tank.happiness, 
-    clean: Tank.clean
+    thirst: Tank.thirst
 }
 
 // calling inquiries
@@ -58,7 +58,7 @@ console.log(`Your chosen pet is ${petType}. Their name is ${petName}.`);
 console.log(`${petName}'s special ability is: ${petAbility}.`);
 
 // added stats (console.log and object)
-console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tired} | Happy: ${petStats.happy} | Clean: ${petStats.clean}`)
+console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tiredness} | Happy: ${petStats.happiness} | Thirst: ${petStats.thirst}`)
 
 
 
@@ -71,14 +71,36 @@ async function playGame()
             type: 'list',
             name: 'petActions',
             message: 'What would you like to do?',
-            choices: ['Feed', 'Drink', 'Wash', 'Sleep','Exit Game']
+            choices: ['Feed', 'Sleep', 'Play', 'Drink', petAbility,'Exit Game']
         }
 
     ])
+
     if (playMenu.petActions === 'Feed') 
     {
         petStats = Tank.eat()
     }
+
+    if (playMenu.petActions === 'Sleep') 
+    {
+        petStats = Tank.sleep()
+    }
+
+    if (playMenu.petActions === 'Play') 
+    {
+        petStats = Tank.play()
+    }
+
+    if (playMenu.petActions === 'Drink') 
+    {
+        petStats = Tank.drink()
+    }
+
+    if (playMenu.petActions === petAbility) 
+    {
+        petStats = Tank.runThemDown()
+    }
+
     if (playMenu.petActions === 'Exit Game') 
     {
         stopGame()
@@ -86,8 +108,11 @@ async function playGame()
     }
     else
     {
-        console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tired} | Happy: ${petStats.happy} | Clean: ${petStats.clean}`)
+        
     }
+
+    console.log(`${petName}'s stats are: Hunger: ${petStats.hunger} | Tired: ${petStats.tiredness} | Happy: ${petStats.happiness} | Thirst: ${petStats.thirst}`)
+
     playGame()
     
 

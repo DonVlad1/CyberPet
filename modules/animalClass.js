@@ -11,7 +11,7 @@ export class Animal
     eat()
     {
         this.hunger += 60
-        this.thirst -= 20
+        this.thirst -= 10
         return this
     }
 
@@ -36,6 +36,12 @@ export class Animal
         this.thirst -= 30
         this.tiredness -= 30
         return this
+    }
+
+    runThemDown() //temporarily here, needs to be move to subclass
+    {
+        this.happiness += 100
+        this.tiredness -= 50
     }
 
 }
