@@ -1,7 +1,14 @@
 import inquirer from 'inquirer';
-import { Animal, petList, statTank, statCat, statDog, statDragon, statMimic } from './modules/animalClass.js';
+import { Animal, statTank, petList } from './modules/animalClass.js';
 import chalk from 'chalk'; 
 
+const petChoices = [
+    "cat",
+    "dog",
+    "tank",
+    "dragon",
+    "mimic",
+]
 
 // inquirer for selecting what type of pet you have
 async function petTypeInput()
@@ -11,13 +18,7 @@ async function petTypeInput()
             type: 'list',
             name: 'getPet',
             message: "Select a Pet:",
-            choices: [
-                "cat",
-                "dog",
-                "tank",
-                "dragon",
-                "mimic",
-            ]
+            choices: petChoices
         }
     ]
 
@@ -67,9 +68,6 @@ let endGame = false;
 
 // Setting petStats = stats of chosen pet
 function setPetType() {
-
-    let petChoices = ["cat", "dog", "tank", "dragon", "mimic"]
-
     for (let petListIndex = 0; petListIndex < petChoices.length; petListIndex++) 
     {
         if (petType == petChoices[petListIndex])

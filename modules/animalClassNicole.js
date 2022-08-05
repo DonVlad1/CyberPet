@@ -26,6 +26,7 @@ export class Animal
     drink()
     {
         this.thirst += 60
+        this.hunger -= 10
         return this
     }
 
@@ -47,14 +48,6 @@ export class Animal
 
 }
 
-
-
-
-
-
-
-
-
 class Mimic extends Animal {
     constructor(name, hunger, tiredness, happiness, thirst)
     {
@@ -64,9 +57,9 @@ class Mimic extends Animal {
     specialAbility() {
         this.hunger += 100;
         this.tiredness -= 50;
+        return this
     }
 }
-
 
 class Dragon extends Animal
 {
@@ -79,19 +72,15 @@ class Dragon extends Animal
     {
         this.hunger += 100;
         this.tiredness -= 50;
+        return this
     }
 }
 
 
 export const statTank = new Animal("myTank", 110, 130, 150, 160)
-export const statMimic = new Animal("myMimic", 120, 150, 160, 120)
-export const statDragon = new Animal("myDragon", 233, 72, 81, 96)
+export const statMimic = new Mimic("myMimic", 120, 150, 160, 120)
+export const statDragon = new Dragon("myDragon", 233, 72, 81, 96)
 export const statCat = new Animal("myCat", 68, 124, 124, 34)
 export const statDog = new Animal("myDog", 143, 124, 83, 92)
 
-export const petList = [statCat, statDog, statTank, statDragon, statMimic]
-
-// export function test()
-// {
-//     console.log("test gud")
-// }
+export const petList = [statTank, statMimic, statDragon, statCat, statDog]
