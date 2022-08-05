@@ -119,15 +119,16 @@ class Tank extends Animal {
         this.hunger -= 20
         this.thirst -= 10
         this.tiredness -= 10
+        return this;
 	}
 }
 
 
-export const statTank = new Animal("myTank", 150, 130, 90, 160)
+export const statTank = new Tank("myTank", 150, 130, 90, 160)
 export const statMimic = new Mimic("myMimic", 120, 150, 160, 120)
-export const statDragon = new Animal("myDragon", 200, 100, 80, 90)
-export const statCat = new Animal("myCat", 160, 120, 120, 50)
-export const statDog = new Animal("myDog", 140, 120, 80, 100)
+export const statDragon = new Dragon("myDragon", 200, 100, 80, 90)
+export const statCat = new Cat("myCat", 160, 120, 120, 50)
+export const statDog = new Dog("myDog", 140, 120, 80, 100)
 
 
 export const petList = [statCat, statDog, statTank, statDragon, statMimic]
