@@ -10,51 +10,45 @@ export class Animal
 
     eat()
     {
-        this.hunger += 60
-        this.thirst -= 20
+        this.hunger += 30
+        this.thirst -= 10
+        this.tiredness -= 10
         return this
     }
 
     sleep()
     {
-        this.tiredness += 80
-        this.hunger -= 40
-        this.thirst -= 40
+        this.tiredness += 50
+        this.hunger -= 20
+        this.thirst -= 20
         return this
     }
 
     drink()
     {
-        this.thirst += 60
+        this.thirst += 30
         return this
     }
 
     play()
     {
-        this.happiness += 30
-        this.hunger -= 30
-        this.thirst -= 30
-        this.tiredness -= 30
+        this.happiness += 50
+        this.hunger -= 20
+        this.thirst -= 20
+        this.tiredness -= 20
         return this
     }
 
     runThemDown() //temporarily here, needs to be move to subclass
     {
         this.happiness += 100
-        this.tiredness -= 50
+        this.tiredness -= 40
         return this
     }
 
 }
 
-
-
-
-
-
-
-
-
+// add subclasses here!
 class Mimic extends Animal {
     constructor(name, hunger, tiredness, happiness, thirst)
     {
@@ -63,31 +57,78 @@ class Mimic extends Animal {
     
     specialAbility() {
         this.hunger += 100;
-        this.tiredness -= 50;
+        this.tiredness -= 40;
+        return this
     }
 }
 
 
-class Dragon extends Animal
-{
-    constructor(name, hunger, tiredness, happiness, thirst)
+class Dragon extends Animal {
+	constructor(name, hunger, tiredness, happiness, thirst) 
     {
-        super(name, hunger, tiredness, happiness, thirst)
+		super(name, hunger, tiredness, happiness, thirst);
     }
 
-    specialAbility()
+	specialAbility() {
+        this.happiness += 50
+        this.hunger -= 30
+        this.thirst -= 30
+        this.tiredness -= 30
+		return this;
+	}
+}
+
+class Cat extends Animal {
+	constructor(name, hunger, tiredness, happiness, thirst) 
     {
-        this.hunger += 100;
-        this.tiredness -= 50;
+		super(name, hunger, tiredness, happiness, thirst);
     }
+
+	specialAbility() {
+        this.happiness += 20
+        this.hunger += 20
+        this.thirst += 10
+        this.tiredness -= 50
+		return this;
+	}
+}
+
+class Dog extends Animal {
+	constructor(name, hunger, tiredness, happiness, thirst) 
+    {
+		super(name, hunger, tiredness, happiness, thirst);
+    }
+
+	specialAbility() {
+        this.happiness += 50
+        this.hunger -= 30
+        this.thirst -= 30
+        this.tiredness -= 30
+		return this;
+	}
+}
+
+class Tank extends Animal {
+	constructor(name, hunger, tiredness, happiness, thirst) 
+    {
+		super(name, hunger, tiredness, happiness, thirst);
+    }
+
+	specialAbility() {
+        this.happiness += 50
+        this.hunger -= 20
+        this.thirst -= 10
+        this.tiredness -= 10
+	}
 }
 
 
-export const statTank = new Animal("myTank", 110, 130, 150, 160)
-export const statMimic = new Animal("myMimic", 120, 150, 160, 120)
-export const statDragon = new Animal("myDragon", 233, 72, 81, 96)
-export const statCat = new Animal("myCat", 68, 124, 124, 34)
-export const statDog = new Animal("myDog", 143, 124, 83, 92)
+export const statTank = new Animal("myTank", 150, 130, 90, 160)
+export const statMimic = new Mimic("myMimic", 120, 150, 160, 120)
+export const statDragon = new Animal("myDragon", 200, 100, 80, 90)
+export const statCat = new Animal("myCat", 160, 120, 120, 50)
+export const statDog = new Animal("myDog", 140, 120, 80, 100)
+
 
 export const petList = [statCat, statDog, statTank, statDragon, statMimic]
 

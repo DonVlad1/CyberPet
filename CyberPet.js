@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import { Animal, statTank, petList } from './modules/animalClass.js';
+import { Animal, statTank, statMimic, petList } from './modules/animalClass.js';
 import chalk from 'chalk'; 
 
 const petChoices = [
@@ -181,7 +181,7 @@ async function playGame() {
                 break;
     
             case petAbility:
-                petStats = statTank.runThemDown()
+                petStats = petStats.specialAbility(); 
                 break;
     
             case "Exit Game":
