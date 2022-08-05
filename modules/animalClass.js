@@ -11,7 +11,7 @@ export class Animal
     eat()
     {
         this.hunger += 60
-        this.thirst -= 10
+        this.thirst -= 20
         return this
     }
 
@@ -45,8 +45,9 @@ export class Animal
         return this
     }
 
-    specialAbility() {
-
+    shapeShift() {
+        this.hunger += 0;
+        this.tiredness -= 0;
     }
 
 }
@@ -58,7 +59,7 @@ export const statDragon = new Animal("myDragon", 233, 72, 81, 96)
 export const statCat = new Animal("myCat", 68, 124, 124, 34)
 export const statDog = new Animal("myDog", 143, 124, 83, 92)
 
-export const petList = [statTank, statMimic, statDragon, statCat, statDog]
+export const petList = [statCat, statDog, statTank, statDragon, statMimic]
 
 // export function test()
 // {
